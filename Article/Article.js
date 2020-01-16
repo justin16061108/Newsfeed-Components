@@ -112,3 +112,50 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+function NewsfeedComposer (title, date, firstParagraph, secondParagraph, thirdParagraph){
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const ButtonExpand = document.createElement('span');
+  const ButtonOpen = document.createElement('button');
+  const ButtonClose = document.createElement('button');
+
+  article.classList.add('article');
+  articleDate.classList.add('date');
+  ButtonExpand.classList.add('expandButton');
+  p1.classList.add('paragraph');
+  p2.classList.add('paragraph');
+  p3.classList.add('paragraph');
+  ButtonClose.classList.add('.close');
+  ButtonOpen.classList.add('.article-open');
+
+  article.append(articleTitle);
+  article.append(articleDate);
+  article.append(p1);
+  article.append(p2);
+  article.append(p3);
+  article.append(ButtonExpand);
+
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+  ButtonExpand.textContent = 'Expand';
+
+  ButtonExpand.addEventListener('click', event => {
+    ButtonOpen.classList.toggle('article-open');
+    ButtonClose.classList.toggle('close');
+    article.classList.toggle('article-open');
+  })
+  return article
+}
+
+const allArticles = document.querySelector('.articles');
+data.forEach(data =>{
+      allArticles.appendChild(NewsfeedComposer(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
